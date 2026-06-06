@@ -6,18 +6,11 @@ from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense
 from sklearn.preprocessing import LabelEncoder
 
-# =========================================
-# MAIN WINDOW
-# =========================================
-
 root = Tk()
 root.title("Emotion Recognition From Speech")
 root.geometry("950x700")
 root.config(bg="#0f172a")
 
-# =========================================
-# DUMMY TRAINING DATA
-# =========================================
 
 X_train = np.random.rand(100, 40)
 
@@ -26,14 +19,9 @@ y_train = np.random.choice(
     100
 )
 
-# Encode Labels
 encoder = LabelEncoder()
 
 y_encoded = encoder.fit_transform(y_train)
-
-# =========================================
-# DEEP LEARNING MODEL
-# =========================================
 
 model = Sequential()
 
@@ -59,17 +47,12 @@ model.compile(
     metrics=["accuracy"]
 )
 
-# Train Model
 model.fit(
     X_train,
     y_encoded,
     epochs=5,
     verbose=0
 )
-
-# =========================================
-# EXTRACT MFCC FEATURES
-# =========================================
 
 def extract_features(file_path):
 
@@ -91,10 +74,6 @@ def extract_features(file_path):
     )
 
     return mfcc_scaled
-
-# =========================================
-# PREDICT EMOTION
-# =========================================
 
 def predict_emotion():
 
@@ -129,10 +108,6 @@ def predict_emotion():
             fg="#22c55e"
         )
 
-# =========================================
-# HEADER
-# =========================================
-
 top_frame = Frame(
     root,
     bg="#111827",
@@ -149,10 +124,6 @@ Label(
     fg="#38bdf8"
 ).pack(pady=25)
 
-# =========================================
-# MAIN CARD
-# =========================================
-
 main_frame = Frame(
     root,
     bg="#1e293b"
@@ -164,10 +135,6 @@ main_frame.pack(
     ipady=40
 )
 
-# =========================================
-# TITLE
-# =========================================
-
 Label(
     main_frame,
     text="Upload Speech Audio File (.wav)",
@@ -175,10 +142,6 @@ Label(
     bg="#1e293b",
     fg="white"
 ).pack(pady=20)
-
-# =========================================
-# BUTTON
-# =========================================
 
 Button(
     main_frame,
@@ -193,9 +156,6 @@ Button(
     cursor="hand2"
 ).pack(pady=25)
 
-# =========================================
-# RESULT LABEL
-# =========================================
 
 result_label = Label(
     root,
@@ -205,10 +165,6 @@ result_label = Label(
 )
 
 result_label.pack(pady=40)
-
-# =========================================
-# FOOTER
-# =========================================
 
 Label(
     root,
